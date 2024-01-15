@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "f206e77c-9d41-4344-970b-ce3f72a348f8",
+		"name": "Posts API (Assignment)",
+		"description": "This API will allow you to perform CRUD operations on a \"Posts\" relation in Postgresql. The API is setup using Express.js with Sequelize as an ORM for interacting with \"Posts\" relation. The server runs on port 3000.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32327476"
+	},
+	"item": [
+		{
+			"name": "Get all the posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response Content-Type is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Caption is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('array');\r",
+							"  responseData.forEach(function(item) {\r",
+							"    pm.expect(item.caption).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Caption should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Use /posts to get all the posts currently present in the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Get a post with specific ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response has the required fields - id, caption, media, user, createdAt, and updatedAt\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.include.all.keys('id', 'caption', 'media', 'user', 'createdAt', 'updatedAt');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Caption is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.caption).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Caption should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Media is in a valid format\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.media).to.match(/^https?:\\/\\/.*/, \"Media should be a valid URL format\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"User field should not be empty\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.user).to.exist.and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"2"
+					]
+				},
+				"description": "Use /posts/{id} to set a post with specific ID. Replace {id} with an integer."
+			},
+			"response": []
+		},
+		{
+			"name": "Update a post with specific ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('id');\r",
+							"    pm.expect(responseData).to.have.property('caption');\r",
+							"    pm.expect(responseData).to.have.property('media');\r",
+							"    pm.expect(responseData).to.have.property('user');\r",
+							"    pm.expect(responseData).to.have.property('createdAt');\r",
+							"    pm.expect(responseData).to.have.property('updatedAt');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Caption is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.caption).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Caption should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Media is in a valid format\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.media).to.match(/^https?:\\/\\/.*/, \"Media should be a valid URL format\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"caption\": \"Freecodecamp website\",\r\n        \"media\": \"https://www.freecodecamp.org/\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"4"
+					]
+				},
+				"description": "Use /posts/{id} to update a post with specific ID. You can update caption and media attributes"
+			},
+			"response": []
+		},
+		{
+			"name": "Create new post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 201\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(201);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('id');\r",
+							"    pm.expect(responseData).to.have.property('caption');\r",
+							"    pm.expect(responseData).to.have.property('media');\r",
+							"    pm.expect(responseData).to.have.property('user');\r",
+							"    pm.expect(responseData).to.have.property('createdAt');\r",
+							"    pm.expect(responseData).to.have.property('updatedAt');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Caption is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.caption).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Caption should not be empty\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"User is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.user).to.be.a('string').and.to.have.lengthOf.at.least(1, \"User should not be empty\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"caption\": \"Freecodecamp youtube channel\",\r\n    \"media\": \"https://www.youtube.com/@freecodecamp\",\r\n    \"user\": \"admin\",\r\n    \"createdAt\": \"2024-01-14T19:52:33.906Z\",\r\n    \"updatedAt\": \"2024-01-14T19:52:33.906Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts?Content-Type=application/json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					]
+				},
+				"description": "Use /posts with POST method to create a new post and put the data in the body in JSON format."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a post with specific ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"4"
+					]
+				},
+				"description": "Use /posts/{id} to delete a post with specific ID."
+			},
+			"response": []
+		}
+	]
+}
