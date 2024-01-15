@@ -81,7 +81,83 @@
 				},
 				"description": "Use /posts to get all the posts currently present in the database."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Assignment API Testing",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "572"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"23c-mKdxB/q0jYWMDawLOK88axCxiAg\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 11:51:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 3,\n        \"caption\": \"The verge article for CES 2024\",\n        \"media\": \"https://www.theverge.com/23971966/ces-2024-news-announcements-products\",\n        \"user\": \"admin\",\n        \"createdAt\": \"2024-01-14T19:52:33.906Z\",\n        \"updatedAt\": \"2024-01-14T19:52:33.906Z\"\n    },\n    {\n        \"id\": 2,\n        \"caption\": \"My updated post\",\n        \"media\": \"https://example.com/image.jpg\",\n        \"user\": \"admin\",\n        \"createdAt\": \"2024-01-14T19:49:18.246Z\",\n        \"updatedAt\": \"2024-01-15T11:45:07.892Z\"\n    },\n    {\n        \"id\": 4,\n        \"caption\": \"Freecodecamp website\",\n        \"media\": \"https://www.freecodecamp.org/\",\n        \"user\": \"admin\",\n        \"createdAt\": \"2024-01-14T19:52:33.906Z\",\n        \"updatedAt\": \"2024-01-15T11:51:30.504Z\"\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "Get a post with specific ID",
@@ -144,7 +220,62 @@
 				},
 				"description": "Use /posts/{id} to set a post with specific ID. Replace {id} with an integer."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "165"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a5-MMtpy2cCIJb6RZ7OhhxN53lxdS0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 11:40:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"caption\": \"My new post\",\n    \"media\": \"https://example.com/image.jpg\",\n    \"user\": \"admin\",\n    \"createdAt\": \"2024-01-14T19:49:18.246Z\",\n    \"updatedAt\": \"2024-01-14T19:49:18.246Z\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Update a post with specific ID",
@@ -219,7 +350,71 @@
 				},
 				"description": "Use /posts/{id} to update a post with specific ID. You can update caption and media attributes"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"caption\": \"Freecodecamp website\",\r\n        \"media\": \"https://www.freecodecamp.org/\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "174"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ae-Fd8ynhnAyCBwTq+l2t1eVUKfcHI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 11:51:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"caption\": \"Freecodecamp website\",\n    \"media\": \"https://www.freecodecamp.org/\",\n    \"user\": \"admin\",\n    \"createdAt\": \"2024-01-14T19:52:33.906Z\",\n    \"updatedAt\": \"2024-01-15T11:51:30.504Z\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Create new post",
@@ -298,7 +493,76 @@
 				},
 				"description": "Use /posts with POST method to create a new post and put the data in the body in JSON format."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create new post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caption\": \"Freecodecamp youtube channel\",\r\n    \"media\": \"https://www.youtube.com/@freecodecamp\",\r\n    \"user\": \"admin\",\r\n    \"createdAt\": \"2024-01-14T19:52:33.906Z\",\r\n    \"updatedAt\": \"2024-01-14T19:52:33.906Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts?Content-Type=application/json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "190"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"be-uxMdrj2tJjmWY+4DMavU6iwE0OQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 12:44:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5,\n    \"caption\": \"Freecodecamp youtube channel\",\n    \"media\": \"https://www.youtube.com/@freecodecamp\",\n    \"user\": \"admin\",\n    \"createdAt\": \"2024-01-14T19:52:33.906Z\",\n    \"updatedAt\": \"2024-01-15T12:44:28.067Z\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Delete a post with specific ID",
@@ -319,7 +583,62 @@
 				},
 				"description": "Use /posts/{id} to delete a post with specific ID."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Delete a post with specific ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-ApdGuEKF5DvnjukxrpHUpaQnnd8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Jan 2024 12:44:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Post deleted successfully\"\n}"
+				}
+			]
 		}
 	]
 }
